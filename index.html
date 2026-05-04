@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sun Vibration Pattern</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #0b0f1a;
+      color: white;
+      margin-top: 100px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background: gold;
+      color: black;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: orange;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>☀️ Sun Vibration Pattern</h1>
+  <p>Tap the button to feel the Sun's oscillation</p>
+
+  <button onclick="sunPattern()">Start Sun Vibration</button>
+  <button onclick="stopVibration()">Stop</button>
+
+  <script>
+    // ☀️ Sun Pattern (smooth, repeating pulse)
+    function sunPattern() {
+      // Pattern: vibrate → pause → vibrate → pause (looped)
+      const pattern = [300, 200, 300, 200];
+
+      // Start repeating vibration
+      navigator.vibrate(pattern);
+
+      // Loop it every 1 second
+      window.sunInterval = setInterval(() => {
+        navigator.vibrate(pattern);
+      }, 1000);
+    }
+
+    // Stop vibration
+    function stopVibration() {
+      navigator.vibrate(0);
+      clearInterval(window.sunInterval);
+    }
+  </script>
+
+</body>
+</html>
