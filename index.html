@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sun Vibration Pattern</title>
+  <title>Black Hole Vibration</title>
 
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background: #0b0f1a;
+      background: radial-gradient(circle, #0a0a0a, #000000);
       color: white;
       margin-top: 100px;
+    }
+
+    h1 {
+      font-size: 28px;
     }
 
     button {
@@ -18,44 +22,51 @@
       font-size: 18px;
       border: none;
       border-radius: 10px;
-      background: gold;
-      color: black;
+      background: purple;
+      color: white;
       cursor: pointer;
+      margin: 10px;
     }
 
     button:hover {
-      background: orange;
+      background: violet;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>☀️ Sun Vibration Pattern</h1>
-  <p>Tap the button to feel the Sun's oscillation</p>
+  <h1>🌌 Black Hole Vibration</h1>
+  <p>Experience a space-time ripple</p>
 
-  <button onclick="sunPattern()">Start Sun Vibration</button>
+  <button onclick="blackHolePattern()">Start Black Hole</button>
   <button onclick="stopVibration()">Stop</button>
 
   <script>
-    // ☀️ Sun Pattern (smooth, repeating pulse)
-    function sunPattern() {
-      // Pattern: vibrate → pause → vibrate → pause (looped)
-      const pattern = [300, 200, 300, 200];
+    // 🌌 Black Hole Chirp Pattern
+    function blackHolePattern() {
+      // Increasing intensity (chirp)
+      const pattern = [
+        100, 150,
+        150, 120,
+        200, 100,
+        300, 80,
+        400, 60,
+        500
+      ];
 
-      // Start repeating vibration
       navigator.vibrate(pattern);
 
-      // Loop it every 1 second
-      window.sunInterval = setInterval(() => {
+      // Optional: repeat the pattern after it ends
+      window.blackHoleInterval = setInterval(() => {
         navigator.vibrate(pattern);
-      }, 1000);
+      }, 2000);
     }
 
     // Stop vibration
     function stopVibration() {
       navigator.vibrate(0);
-      clearInterval(window.sunInterval);
+      clearInterval(window.blackHoleInterval);
     }
   </script>
 
