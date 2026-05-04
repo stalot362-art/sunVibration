@@ -8,64 +8,65 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background: linear-gradient(to bottom, #050510, #000000);
+      background: #000;
       color: white;
       margin-top: 100px;
-    }
-
-    h1 {
-      font-size: 28px;
     }
 
     button {
       padding: 15px 30px;
       font-size: 18px;
-      border: none;
       border-radius: 10px;
+      border: none;
+      margin: 10px;
       background: cyan;
       color: black;
       cursor: pointer;
-      margin: 10px;
-    }
-
-    button:hover {
-      background: white;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>⚡🌌 Pulsar + Black Hole Pattern</h1>
-  <p>Steady pulses → cosmic merger</p>
+  <h1>⚡🌌 Pulsar + Black Hole</h1>
 
-  <button onclick="startPattern()">Start Pattern</button>
-  <button onclick="stopVibration()">Stop</button>
+  <button onclick="startPattern()">Start</button>
+  <button onclick="stopPattern()">Stop</button>
 
   <script>
-    let loopInterval;
+    let running = false;
 
     function startPattern() {
+      running = true;
+      runSequence();
+    }
 
-      // ⚡ Pulsar phase (steady beats)
-      const pulsar = [
-        100, 300,
-        100, 300,
-        100, 300,
-        100, 300
-      ];
+    function runSequence() {
+      if (!running) return;
 
-      // 🌌 Black hole phase (chirp build-up)
-      const blackHole = [
-        100, 150,
-        150, 120,
-        200, 100,
-        300, 80,
-        400, 60,
-        500
-      ];
+      // ⚡ Pulsar (short, reliable)
+      navigator.vibrate([100, 300, 100, 300]);
 
-      // Combine both patterns
-      const combined = [...pulsar, 500, ...blackHole];
+      // Then run black hole after pulsar finishes
+      setTimeout(() => {
+        if (!running) return;
 
-      navigator
+        // 🌌 Black hole (shortened + stronger)
+        navigator.vibrate([100, 100, 200, 100, 300, 100, 400]);
+
+      }, 1000);
+
+      // Repeat loop safely
+      setTimeout(() => {
+        runSequence();
+      }, 2500);
+    }
+
+    function stopPattern() {
+      running = false;
+      navigator.vibrate(0);
+    }
+  </script>
+
+</body>
+</html>
