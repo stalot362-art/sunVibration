@@ -2,70 +2,132 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Pulsar + Black Hole Vibration</title>
+  <title>Vibration Universe</title>
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
       background: #000;
       color: white;
-      margin-top: 100px;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
     }
 
     button {
-      padding: 15px 30px;
-      font-size: 18px;
-      border-radius: 10px;
+      display: block;
+      width: 80%;
+      max-width: 300px;
+      margin: 10px auto;
+      padding: 15px;
+      font-size: 16px;
       border: none;
-      margin: 10px;
+      border-radius: 10px;
       background: cyan;
       color: black;
       cursor: pointer;
+    }
+
+    button:hover {
+      background: white;
+    }
+
+    .stop {
+      background: red;
+      color: white;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>⚡🌌 Pulsar + Black Hole</h1>
+  <h1>🌌 Vibration Universe</h1>
 
-  <button onclick="startPattern()">Start</button>
-  <button onclick="stopPattern()">Stop</button>
+  <!-- Buttons -->
+  <button onclick="earth()">Earth Rotation</button>
+  <button onclick="moon()">Moon Rotation</button>
+  <button onclick="universe()">Universe Formation</button>
+  <button onclick="star()">Star Formation</button>
+  <button onclick="collision()">Collision</button>
+  <button onclick="acceleration()">Acceleration</button>
+  <button onclick="deceleration()">Deceleration</button>
+  <button onclick="sine()">Sine Wave</button>
+  <button onclick="cosine()">Cosine Wave</button>
+  <button onclick="oscillation()">Oscillation</button>
+
+  <button class="stop" onclick="stopAll()">STOP</button>
 
   <script>
     let running = false;
 
-    function startPattern() {
-      running = true;
-      runSequence();
-    }
-
-    function runSequence() {
-      if (!running) return;
-
-      // ⚡ Pulsar (short, reliable)
-      navigator.vibrate([100, 300, 100, 300]);
-
-      // Then run black hole after pulsar finishes
-      setTimeout(() => {
-        if (!running) return;
-
-        // 🌌 Black hole (shortened + stronger)
-        navigator.vibrate([100, 100, 200, 100, 300, 100, 400]);
-
-      }, 1000);
-
-      // Repeat loop safely
-      setTimeout(() => {
-        runSequence();
-      }, 2500);
-    }
-
-    function stopPattern() {
+    function stopAll() {
       running = false;
       navigator.vibrate(0);
     }
+
+    function loop(fn, delay) {
+      running = true;
+      function run() {
+        if (!running) return;
+        fn();
+        setTimeout(run, delay);
+      }
+      run();
+    }
+
+    // 🌍 Earth Rotation (slow steady)
+    function earth() {
+      loop(() => navigator.vibrate([200, 800]), 1000);
+    }
+
+    // 🌙 Moon Rotation (slower, softer)
+    function moon() {
+      loop(() => navigator.vibrate([100, 900]), 1000);
+    }
+
+    // 🌌 Universe Formation (gradual build)
+    function universe() {
+      loop(() => navigator.vibrate([50,100,100,100,200,100,300]), 1500);
+    }
+
+    // ⭐ Star Formation (pulse grows)
+    function star() {
+      loop(() => navigator.vibrate([100,200,200,200,300]), 1500);
+    }
+
+    // 💥 Collision (sudden hit)
+    function collision() {
+      loop(() => navigator.vibrate([500,100,200]), 1200);
+    }
+
+    // 🚀 Acceleration (gets faster)
+    function acceleration() {
+      loop(() => navigator.vibrate([300,200,200,150,100,100]), 1200);
+    }
+
+    // 🛑 Deceleration (slows down)
+    function deceleration() {
+      loop(() => navigator.vibrate([100,100,200,150,300,200]), 1200);
+    }
+
+    // 🌊 Sine Wave (smooth pattern)
+    function sine() {
+      loop(() => navigator.vibrate([100,200,300,200,100]), 1200);
+    }
+
+    // 🌊 Cosine Wave (shifted sine)
+    function cosine() {
+      loop(() => navigator.vibrate([300,200,100,200,300]), 1200);
+    }
+
+    // 🔁 Oscillation (repeating)
+    function oscillation() {
+      loop(() => navigator.vibrate([200,200]), 600);
+    }
+
   </script>
 
 </body>
