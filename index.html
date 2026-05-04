@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Black Hole Vibration</title>
+  <title>Pulsar + Black Hole Vibration</title>
 
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background: radial-gradient(circle, #0a0a0a, #000000);
+      background: linear-gradient(to bottom, #050510, #000000);
       color: white;
       margin-top: 100px;
     }
@@ -22,31 +22,41 @@
       font-size: 18px;
       border: none;
       border-radius: 10px;
-      background: purple;
-      color: white;
+      background: cyan;
+      color: black;
       cursor: pointer;
       margin: 10px;
     }
 
     button:hover {
-      background: violet;
+      background: white;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>🌌 Black Hole Vibration</h1>
-  <p>Experience a space-time ripple</p>
+  <h1>⚡🌌 Pulsar + Black Hole Pattern</h1>
+  <p>Steady pulses → cosmic merger</p>
 
-  <button onclick="blackHolePattern()">Start Black Hole</button>
+  <button onclick="startPattern()">Start Pattern</button>
   <button onclick="stopVibration()">Stop</button>
 
   <script>
-    // 🌌 Black Hole Chirp Pattern
-    function blackHolePattern() {
-      // Increasing intensity (chirp)
-      const pattern = [
+    let loopInterval;
+
+    function startPattern() {
+
+      // ⚡ Pulsar phase (steady beats)
+      const pulsar = [
+        100, 300,
+        100, 300,
+        100, 300,
+        100, 300
+      ];
+
+      // 🌌 Black hole phase (chirp build-up)
+      const blackHole = [
         100, 150,
         150, 120,
         200, 100,
@@ -55,20 +65,7 @@
         500
       ];
 
-      navigator.vibrate(pattern);
+      // Combine both patterns
+      const combined = [...pulsar, 500, ...blackHole];
 
-      // Optional: repeat the pattern after it ends
-      window.blackHoleInterval = setInterval(() => {
-        navigator.vibrate(pattern);
-      }, 2000);
-    }
-
-    // Stop vibration
-    function stopVibration() {
-      navigator.vibrate(0);
-      clearInterval(window.blackHoleInterval);
-    }
-  </script>
-
-</body>
-</html>
+      navigator
